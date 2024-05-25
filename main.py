@@ -28,11 +28,17 @@ def letter_counter(path):                                       # function to co
 
 def instance_sort(counts):
     dict_list = []                          # create empty list for list of dictionaries
-    for key, value in counts.items():       # looking at the key and calue for each dictionary entry
-        if key.isalpha():                   # eliminating non-alphabetical keys
-            dict_list.append({key : value}) # add alpha keys an dtheir values to list as dictionary
-    list_sort = []                          # Gotta figure out how to sort it
-    
+    def key_sort(sort_list):
+        return list(sort_list.values())[0]
+    for key, value in counts.items():           # looking at the key and calue for each dictionary entry
+        if key.isalpha():                       # eliminating non-alphabetical keys
+            dict_list.append({key : value})     # add alpha keys and their values to list as dictionary
+    dict_list.sort(reverse=True, key=key_sort)  # Gotta figure out how to sort it
+    for dict in dict_list:                      # evaluating each letter:count pair
+        for key in dict:                        # assign key and value from each dictionary to variables for printing
+            prnt_key = key
+            prnt_val = dict[key]
+        print(f" The letter {prnt_key} occurs {prnt_val} times.")   # print each letter and instances
 
 
 main()
